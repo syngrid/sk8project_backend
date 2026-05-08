@@ -22,7 +22,7 @@ app.get('/api/health', (req, res) => {
 app.use(morgan('dev'));
 app.use(cors({
     // origin: 'http://localhost:5173',
-    origin: 'sk8engineering.netlify.app',
+    origin: 'https://sk8engineering.netlify.app',
     credentials: true
 }));
 app.use(express.json());
