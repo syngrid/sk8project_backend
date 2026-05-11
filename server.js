@@ -20,9 +20,11 @@ app.get('/api/health', (req, res) => {
 
 // Middleware
 app.use(morgan('dev'));
+const prodFrontendOrigin = process.env.FRONTEND_ORIGIN || 'https://sk8engineering.netlify.app';
+const useProdCors = process.env.NODE_ENV === 'production';
 app.use(cors({
-    // origin: 'http://localhost:5173',
-    origin: 'https://sk8engineering.netlify.app',
+    // Local Vite + local Mongo: reflect browser origin. Deployed API: lock to frontend host.
+    origin: useProdCors ? prodFrontendOrigin : true,
     credentials: true
 }));
 app.use(express.json());
